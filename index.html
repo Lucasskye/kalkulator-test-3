@@ -15,32 +15,33 @@
 }
 
 body{
-    background:#222;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    transition:1s;
+    background:#1f1f1f;
     overflow:hidden;
 }
 
+/* KALKULATOR */
+
 .calculator{
-    width:320px;
-    background:#333;
+    width:340px;
+    background:#2d2d2d;
     padding:20px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,.5);
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
 }
 
 #display{
     width:100%;
     height:70px;
-    font-size:28px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:30px;
     text-align:right;
     padding:10px;
-    border:none;
-    border-radius:10px;
-    margin-bottom:15px;
 }
 
 .buttons{
@@ -52,7 +53,7 @@ body{
 button{
     height:60px;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     font-size:22px;
     cursor:pointer;
 }
@@ -82,56 +83,84 @@ button{
     background:green;
     color:white;
     padding:12px 30px;
-    margin:5px;
     border:none;
     border-radius:10px;
     font-size:18px;
+    margin:5px;
 }
 
 .noBtn{
     background:red;
     color:white;
     padding:12px 30px;
-    margin:5px;
     border:none;
     border-radius:10px;
     font-size:18px;
+    margin:5px;
 }
+
+/* HALAMAN SURPRISE */
 
 #surprisePage{
     display:none;
-    width:100%;
-    height:100vh;
+    position:fixed;
+    inset:0;
     overflow:auto;
-    text-align:center;
-    padding:20px;
-    background:linear-gradient(
-        135deg,
-        #ff5fa2,
-        #ff8ac6,
-        #b56cff
-    );
 }
 
-video{
-    width:90%;
-    max-width:500px;
-    border-radius:20px;
-    margin-top:20px;
+#bgVideo{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:1;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    z-index:2;
 }
 
 .letter{
-    background:white;
+    position:relative;
+    z-index:3;
+
+    width:90%;
     max-width:700px;
-    margin:20px auto;
-    padding:25px;
-    border-radius:20px;
-    line-height:1.8;
+
+    background:white;
+
+    margin:40px auto;
+    padding:35px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+
+    line-height:1.9;
+    color:#333;
 }
+
+.letter h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.question{
+    text-align:center;
+    margin-top:20px;
+}
+
+/* HATI */
 
 .heart{
     position:fixed;
-    font-size:25px;
+    z-index:9999;
+    font-size:24px;
     animation:fall 5s linear forwards;
 }
 
@@ -148,6 +177,8 @@ video{
 
 <body>
 
+<!-- KALKULATOR -->
+
 <div class="calculator" id="calculator">
 
 <input id="display" readonly>
@@ -162,60 +193,86 @@ video{
 <button onclick="add('4')">4</button>
 <button onclick="add('5')">5</button>
 <button onclick="add('6')">6</button>
-<button class="operator" onclick="add('-')">-</button>
+<button class="operator" onclick="add('-')">−</button>
 
 <button onclick="add('1')">1</button>
 <button onclick="add('2')">2</button>
 <button onclick="add('3')">3</button>
-<button class="operator" onclick="add('*')">*</button>
+<button class="operator" onclick="add('*')">×</button>
 
 <button onclick="clearDisplay()">C</button>
 <button onclick="add('0')">0</button>
 <button class="equal" onclick="calculate()">=</button>
-<button class="operator" onclick="add('/')">/</button>
+<button class="operator" onclick="add('/')">÷</button>
 
 </div>
 
 <div class="secretBox" id="secretBox">
-    <h2>Do you want to be my girlfriend? ❤️</h2>
 
-    <button class="yesBtn" onclick="yesAnswer()">YES</button>
-    <button class="noBtn">NO</button>
+<h2>Do you want to be my girlfriend? ❤️</h2>
+
+<button class="yesBtn" onclick="yesAnswer()">
+YES
+</button>
+
+<button class="noBtn">
+NO
+</button>
+
 </div>
 
 </div>
+
+<!-- HALAMAN SURPRISE -->
 
 <div id="surprisePage">
 
-<video id="loveVideo" autoplay controls>
-    <source src="vidiolove.mp4" type="video/mp4">
+<video
+id="bgVideo"
+autoplay
+muted
+loop
+playsinline>
+<source src="vidiolove.mp4" type="video/mp4">
 </video>
+
+<div class="overlay"></div>
 
 <div class="letter">
 
-<h1> Untuk Kamu </h1>
+<h1>❤️ Untuk Kamu ❤️</h1>
+
+<p>Hai,</p>
 
 <p>
-Hai,
+Terima kasih sudah membuka pesan rahasia ini.
 </p>
 
 <p>
-Ini adalah surat yang bisa kamu edit sendiri.
-Ganti semua isi tulisan ini dengan pesan yang ingin kamu sampaikan.
+Di bagian ini kamu bisa menulis surat apa pun yang kamu mau.
+Ganti seluruh paragraf ini dengan kata-katamu sendiri.
 </p>
 
 <p>
-Aku sangat senang bisa mengenalmu dan menghabiskan waktu bersamamu.
+Aku bersyukur bisa mengenalmu dan menghabiskan waktu bersamamu.
 </p>
 
 <p>
-Semoga setelah melihat video ini,
-kamu tahu betapa spesialnya dirimu bagiku.
+Setiap hari bersamamu selalu terasa spesial.
 </p>
 
 <p>
-Maukah kamu menjadi pacarku?
-❤️
+Karena itu aku ingin menyampaikan sesuatu yang sudah lama ingin aku katakan.
+</p>
+
+<h2 class="question">
+Maukah kamu menjadi pacarku? ❤️
+</h2>
+
+<br>
+
+<p style="text-align:right">
+Dari seseorang yang menyayangimu ❤️
 </p>
 
 </div>
@@ -236,17 +293,12 @@ function clearDisplay(){
 
 function calculate(){
 
-    const secret = "2+3+4+2+2+2+10";
-
-    if(display.value === secret){
-
-        document.body.style.background =
-        "linear-gradient(135deg,#ff5fa2,#b56cff)";
+    if(display.value === "2+3+4+2+2+2+10"){
 
         document.getElementById("secretBox")
-        .style.display="block";
+        .style.display = "block";
 
-        for(let i=0;i<30;i++){
+        for(let i=0;i<25;i++){
             setTimeout(createHeart,i*150);
         }
 
@@ -255,8 +307,7 @@ function calculate(){
 
     try{
         display.value = eval(display.value);
-    }
-    catch{
+    }catch{
         display.value = "Error";
     }
 }
@@ -264,12 +315,15 @@ function calculate(){
 function yesAnswer(){
 
     document.getElementById("calculator")
-    .style.display="none";
+    .style.display = "none";
 
     document.getElementById("surprisePage")
-    .style.display="block";
+    .style.display = "block";
 
-    document.getElementById("loveVideo").play();
+    const video =
+    document.getElementById("bgVideo");
+
+    video.play();
 
     for(let i=0;i<50;i++){
         setTimeout(createHeart,i*120);
@@ -278,12 +332,14 @@ function yesAnswer(){
 
 function createHeart(){
 
-    const heart=document.createElement("div");
+    const heart =
+    document.createElement("div");
 
-    heart.className="heart";
-    heart.innerHTML="❤️";
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
 
-    heart.style.left=Math.random()*100+"vw";
+    heart.style.left =
+    Math.random()*100 + "vw";
 
     document.body.appendChild(heart);
 
@@ -291,6 +347,7 @@ function createHeart(){
         heart.remove();
     },5000);
 }
+
 </script>
 
 </body>
