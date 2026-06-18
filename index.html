@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secret Calculator ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#222;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:1s;
+    overflow:hidden;
+}
+
+.calculator{
+    width:320px;
+    background:#333;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+#display{
+    width:100%;
+    height:70px;
+    font-size:28px;
+    text-align:right;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+button{
+    height:60px;
+    border:none;
+    border-radius:10px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.operator{
+    background:#ff9500;
+    color:white;
+}
+
+.equal{
+    background:#4CAF50;
+    color:white;
+}
+
+.secretBox{
+    display:none;
+    margin-top:20px;
+    text-align:center;
+}
+
+.secretBox h2{
+    color:white;
+    margin-bottom:15px;
+}
+
+.yesBtn{
+    background:green;
+    color:white;
+    padding:12px 30px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+.noBtn{
+    background:red;
+    color:white;
+    padding:12px 30px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+#surprisePage{
+    display:none;
+    width:100%;
+    height:100vh;
+    overflow:auto;
+    text-align:center;
+    padding:20px;
+    background:linear-gradient(
+        135deg,
+        #ff5fa2,
+        #ff8ac6,
+        #b56cff
+    );
+}
+
+video{
+    width:90%;
+    max-width:500px;
+    border-radius:20px;
+    margin-top:20px;
+}
+
+.letter{
+    background:white;
+    max-width:700px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+    line-height:1.8;
+}
+
+.heart{
+    position:fixed;
+    font-size:25px;
+    animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator" id="calculator">
+
+<input id="display" readonly>
+
+<div class="buttons">
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="operator" onclick="add('+')">+</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="operator" onclick="add('-')">-</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="operator" onclick="add('*')">*</button>
+
+<button onclick="clearDisplay()">C</button>
+<button onclick="add('0')">0</button>
+<button class="equal" onclick="calculate()">=</button>
+<button class="operator" onclick="add('/')">/</button>
+
+</div>
+
+<div class="secretBox" id="secretBox">
+    <h2>Do you want to be my girlfriend? ❤️</h2>
+
+    <button class="yesBtn" onclick="yesAnswer()">YES</button>
+    <button class="noBtn">NO</button>
+</div>
+
+</div>
+
+<div id="surprisePage">
+
+<video id="loveVideo" autoplay controls>
+    <source src="vidiolove.mp4" type="video/mp4">
+</video>
+
+<div class="letter">
+
+<h1> Untuk Kamu </h1>
+
+<p>
+Hai,
+</p>
+
+<p>
+Ini adalah surat yang bisa kamu edit sendiri.
+Ganti semua isi tulisan ini dengan pesan yang ingin kamu sampaikan.
+</p>
+
+<p>
+Aku sangat senang bisa mengenalmu dan menghabiskan waktu bersamamu.
+</p>
+
+<p>
+Semoga setelah melihat video ini,
+kamu tahu betapa spesialnya dirimu bagiku.
+</p>
+
+<p>
+Maukah kamu menjadi pacarku?
+❤️
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const display = document.getElementById("display");
+
+function add(value){
+    display.value += value;
+}
+
+function clearDisplay(){
+    display.value = "";
+}
+
+function calculate(){
+
+    const secret = "2+3+4+2+2+2+10";
+
+    if(display.value === secret){
+
+        document.body.style.background =
+        "linear-gradient(135deg,#ff5fa2,#b56cff)";
+
+        document.getElementById("secretBox")
+        .style.display="block";
+
+        for(let i=0;i<30;i++){
+            setTimeout(createHeart,i*150);
+        }
+
+        return;
+    }
+
+    try{
+        display.value = eval(display.value);
+    }
+    catch{
+        display.value = "Error";
+    }
+}
+
+function yesAnswer(){
+
+    document.getElementById("calculator")
+    .style.display="none";
+
+    document.getElementById("surprisePage")
+    .style.display="block";
+
+    document.getElementById("loveVideo").play();
+
+    for(let i=0;i<50;i++){
+        setTimeout(createHeart,i*120);
+    }
+}
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+}
+</script>
+
+</body>
+</html>
